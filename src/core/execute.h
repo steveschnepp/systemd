@@ -288,6 +288,7 @@ struct ExecContext {
         bool mount_apivfs;
 
         bool dynamic_user;
+        bool dynamic_user_by_instance;
         bool remove_ipc;
 
         bool memory_deny_write_execute;

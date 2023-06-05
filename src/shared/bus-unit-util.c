@@ -885,6 +885,7 @@ static int bus_append_execute_property(sd_bus_message *m, const char *field, con
                               "MemoryDenyWriteExecute",
                               "RestrictRealtime",
                               "DynamicUser",
+                              "DynamicUserByInstance",
                               "RemoveIPC",
                               "ProtectKernelTunables",
                               "ProtectKernelModules",

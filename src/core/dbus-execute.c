@@ -1089,6 +1089,7 @@ const sd_bus_vtable bus_exec_vtable[] = {
         SD_BUS_PROPERTY("User", "s", NULL, offsetof(ExecContext, user), SD_BUS_VTABLE_PROPERTY_CONST),
         SD_BUS_PROPERTY("Group", "s", NULL, offsetof(ExecContext, group), SD_BUS_VTABLE_PROPERTY_CONST),
         SD_BUS_PROPERTY("DynamicUser", "b", bus_property_get_bool, offsetof(ExecContext, dynamic_user), SD_BUS_VTABLE_PROPERTY_CONST),
+        SD_BUS_PROPERTY("DynamicUserByInstance", "b", bus_property_get_bool, offsetof(ExecContext, dynamic_user_by_instance), SD_BUS_VTABLE_PROPERTY_CONST),
         SD_BUS_PROPERTY("RemoveIPC", "b", bus_property_get_bool, offsetof(ExecContext, remove_ipc), SD_BUS_VTABLE_PROPERTY_CONST),
         SD_BUS_PROPERTY("SetCredential", "a(say)", property_get_set_credential, 0, SD_BUS_VTABLE_PROPERTY_CONST),
         SD_BUS_PROPERTY("LoadCredential", "a(ss)", property_get_load_credential, 0, SD_BUS_VTABLE_PROPERTY_CONST),
@@ -1787,6 +1788,9 @@ int bus_exec_context_set_transient_property(
 
         if (streq(name, "DynamicUser"))
                 return bus_set_transient_bool(u, name, &c->dynamic_user, message, flags, error);
+
+        if (streq(name, "DynamicUserByInstance"))
+                return bus_set_transient_bool(u, name, &c->dynamic_user_by_instance, message, flags, error);
 
         if (streq(name, "RemoveIPC"))
                 return bus_set_transient_bool(u, name, &c->remove_ipc, message, flags, error);
